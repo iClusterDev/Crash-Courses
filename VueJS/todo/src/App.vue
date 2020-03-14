@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <todos :todos="todos"></todos>
+    <todos :todos="todos" @delete-todo="deleteTodo"></todos>
   </div>
 </template>
 
@@ -20,7 +20,7 @@ export default {
         {
           id: 2,
           title: "Todo Two",
-          completed: true
+          completed: false
         },
         {
           id: 3,
@@ -30,7 +30,12 @@ export default {
       ]
     };
   },
-  components: { Todos }
+  components: { Todos },
+  methods: {
+    deleteTodo(id) {
+      this.todos = this.todos.filter(todo => todo.id !== id);
+    }
+  }
 };
 </script>
 
