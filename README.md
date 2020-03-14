@@ -1,3 +1,3 @@
-### Web Dev Crash Courses
+### JS GraphQL
 
-This repo is a collection of Web Development Crash Courses.
+In this Crash Course we are biulding a simple GraphQL server in Node.
