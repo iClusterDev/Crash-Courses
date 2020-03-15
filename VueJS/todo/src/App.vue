@@ -1,11 +1,15 @@
 <template>
   <div id="app">
-    <todos :todos="todos" @delete-todo="deleteTodo"></todos>
+    <Header></Header>
+    <Form @add-todo="addTodo"></Form>
+    <Todos :todos="todos" @delete-todo="deleteTodo"></Todos>
   </div>
 </template>
 
 <script>
+import Form from "./components/Form";
 import Todos from "./components/Todos";
+import Header from "./components/Header";
 
 export default {
   name: "App",
@@ -30,16 +34,19 @@ export default {
       ]
     };
   },
-  components: { Todos },
+  components: { Todos, Header, Form },
   methods: {
     deleteTodo(id) {
       this.todos = this.todos.filter(todo => todo.id !== id);
+    },
+    addTodo(newTodo) {
+      this.todos = [...this.todos, newTodo];
     }
   }
 };
 </script>
 
-<style>
+<style lang="scss">
 * {
   box-sizing: border-box;
   padding: 0;
@@ -49,5 +56,18 @@ export default {
 body {
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.4;
+}
+
+.btn {
+  display: inline-block;
+  border: none;
+  background: #555;
+  color: #fff;
+  padding: 7px 20px;
+  cursor: pointer;
+
+  &:hover {
+    background: #666;
+  }
 }
 </style>

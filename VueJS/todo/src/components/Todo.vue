@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: "todo",
+  name: "Todo",
   props: ["todo"],
   methods: {
     markComplete() {

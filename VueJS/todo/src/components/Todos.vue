@@ -10,7 +10,7 @@
 import Todo from "./Todo";
 
 export default {
-  name: "todos",
+  name: "Todos",
   props: ["todos"],
   components: { Todo }
 };
