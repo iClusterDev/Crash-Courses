@@ -21,6 +21,8 @@ class AppCard extends HTMLElement {
   constructor() {
     super();
 
+    this.showInfo = true;
+
     this.attachShadow({ mode: "open" });
 
     this.shadowRoot.appendChild(template.content.cloneNode(true));
@@ -29,6 +31,28 @@ class AppCard extends HTMLElement {
 
     this.shadowRoot.querySelector("img").src = this.getAttribute("avatar");
   }
+
+  toggleInfo() {
+    this.showInfo = !this.showInfo;
+    const info = this.shadowRoot.querySelector(".info");
+    const toggle = this.shadowRoot.querySelector("#toggle");
+
+    if (this.showInfo) {
+      info.style.display = "block";
+      toggle.innerText = "Hide Info";
+    } else {
+      info.style.display = "none";
+      toggle.innerText = "Show Info";
+    }
+  }
+
+  connectedCallback() {
+    this.shadowRoot.querySelector("#toggle").addEventListener("click", () => this.toggleInfo());
+  }
+
+  disconnectedCallback() {
+    this.shadowRoot.querySelector("#toggle").removeEventListener();
+  }
 }
 
-window.customElements.define("user-card", AppCard);
+window.customElements.define("app-card", AppCard);
